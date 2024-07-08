@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Yagmur Genc CV</title>
+    <style>
+      input {
+        width: 100%;
+        font-size: 25px;
+        margin-bottom: 10px;
+      }
+      form {
+        background-color: rgb(207, 187, 187);
+        padding: 20px;
+      }
+      #submit {
+        color: red;
+        border: 2px solid;
+      }
+      #erkek,
+      #kadın {
+        width: auto;
+      }
+      ul {
+        text-transform: uppercase;
+        text-align: center;
+      }
+      li {
+        display: inline;
+        margin-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <h1>iletişim formu</h1>
+
+      <input type="text" placeholder="adınızı yazın" />
+
+      <input type="text" placeholder="soyad yazın" />
+
+      <input type="date" />
+
+      <input type="number" placeholder="yaşi" />
+
+      <label for="erkek"
+        ><input type="radio" id="erkek" name="cinsiyet" />erkek</label
+      >
+
+      <label for="kadın"
+        ><input type="radio" id="kadın" name="cinsiyet" />kadın</label
+      >
+
+      <input type="submit" id="submit" />
+    </form>
+
+    <ul>
+      <li><a href="home.html" target="_blank"> home </a></li>
+      <li><a href="form.html"> contact </a></li>
+      <li>
+        <a href="about.html"> hakkımızda </a>
+      </li>
+    </ul>
+  </body>
+</html>
