@@ -31,7 +31,7 @@
     </style>
   </head>
   <body>
-    <form id="form2">
+    <form id="form2" method="get">
       <h1>iletişim formu</h1>
 
       <input
@@ -39,14 +39,17 @@
         type="text"
         placeholder="adınızı yazın"
         required
-        maxlength="5"
+        maxlength="10"
+        minlength="3"
       />
 
       <input type="text" placeholder="soyad yazın" />
 
       <input type="date" />
 
-      <input type="number" placeholder="yaşi" />
+      <input type="email" />
+
+      <input type="number" placeholder="yaşi" min="18" max="25" />
 
       <label for="erkek"
         ><input type="radio" id="erkek" name="cinsiyet" />erkek</label

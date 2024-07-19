@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokemon Bilgi Uygulaması</title>
+    <
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h2>Pokemon Bilgi Gİrişi</h2>
+      <form id="pokemonForm">
+        <div class="form-group">
+          <label for="pokemonName">Pokemon Adı:</label>
+          <input type="text" class="form-control" id="pokemonName" required />
+        </div>
+
+        <div class="form-group">
+          <label for="pokemonType">Pokemon Tipi:</label>
+          <select class="form-control" id="pokemonType" required>
+            <option value="Ateş">Ateş</option>
+            <option value="Su">Su</option>
+            <option value="Elektrik">Elektrik</option>
+            <option value="Buz">Buz</option>
+          </select>
+        </div>
+        <button id="addButton" type="submit" class="btn btn-primary">
+          Ekle
+        </button>
+      </form>
+
+      <h2 class="mt-5">Pokemon Listesi</h2>
+      <div class="form-group">
+        <label for="filterType">Filtrele:</label>
+        <select class="form-control" id="filterType">
+          <option value="Ateş">Ateş</option>
+          <option value="Su">Su</option>
+          <option value="Elektrik">Elektrik</option>
+          <option value="Buz">Buz</option>
+        </select>
+      </div>
+
+      <ul class="list-group" id="pokemonList"></ul>
+      <a href="#" id="clearButton" class="btn btn-primary btn-sm mt-3"
+        >Tüm Seçenekleri Temizle</a
+      >
+    </div>
+    <script src="pokemon.js"></script>
+  </body>
+</html>
