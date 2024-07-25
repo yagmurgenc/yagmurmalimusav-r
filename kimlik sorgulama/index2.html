@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SOAP POST Request Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+      form {
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="soapForm">
+      <h2>Kimlik Doğrulama</h2>
+      <label for="tckimlik">TC Kimlik No:</label>
+      <input
+        type="text"
+        id="tckimlik"
+        name="tckimlik"
+        required
+        pattern="[0-9]{11}"
+        title="11 haneli TC Kimlik No giriniz"
+      />
+
+      <label for="ad">Ad:</label>
+      <input type="text" id="ad" name="ad" required />
+
+      <label for="soyad">Soyad:</label>
+      <input type="text" id="soyad" name="soyad" required />
+
+      <label for="dogumYili">Doğum Yılı:</label>
+      <input
+        type="number"
+        id="dogumYili"
+        name="dogumYili"
+        required
+        min="1900"
+        max="9999"
+      />
+
+      <input type="submit" value="Doğrula" />
+    </form>
+
+    <div id="result"></div>
+    <div id="qrcode"></div>
+    <input id="link" type="text" />
+    <button>QR Oluştur</button>
+
+    <script>
+      $(document).ready(function () {
+        // QR kodu oluşturmak için qrcode.js'i kullanıyoruz
+        var qrcode = new QRCode("qrcode", {
+          text: "Search this text", // qr kodu içeriği (örnek bir URL)
+          width: 128, // qr kodu genişliği
+          height: 128, // qr kodu yüksekliği
+          colorDark: "#000000", // qr kodunun koyu renkleri
+          colorLight: "#ffffff", // qr kodunun açık renkleri
+          // qr kodunun düzeltme seviyesi
+        });
+        $("button").click(function () {
+          let link = $("#link").val();
+          qrcode.clear();
+          qrcode.makeCode(link);
+        });
+        $("#soapForm").submit(function (event) {
+          event.preventDefault(); // Form submission prevented
+
+          var tckimlik = $("#tckimlik").val();
+          var ad = $("#ad").val();
+          var soyad = $("#soyad").val();
+          var dogumYili = $("#dogumYili").val();
+
+          var soapRequest = `<?xml version="1.0" encoding="utf-8"?>
+      <soap12:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                      xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                      xmlns:soap12="http://www.w3.org/2003/05/soap-envelope">
+        <soap12:Body>
+          <TCKimlikNoDogrula xmlns="http://tckimlik.nvi.gov.tr">
+            <TCKimlikNo>${tckimlik}</TCKimlikNo>
+            <Ad>${ad}</Ad>
+            <Soyad>${soyad}</Soyad>
+            <DogumYili>${dogumYili}</DogumYili>
+          </TCKimlikNoDogrula>
+        </soap12:Body>
+      </soap12:Envelope>`;
+
+          $.ajax({
+            url: "https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx?WSDL", // Replace with your actual web service URL
+            type: "POST",
+            contentType: "application/soap+xml; charset=utf-8",
+            data: soapRequest,
+            success: function (response) {
+              $("#result").html(
+                "<h3>SOAP Response</h3><pre>" + response + "</pre>"
+              );
+            },
+            error: function (xhr, status, error) {
+              $("#result").html("<h3>SOAP Error</h3><p>" + error + "</p>");
+            },
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
