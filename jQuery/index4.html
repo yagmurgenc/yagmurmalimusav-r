@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jQuery Nesne Boyutları Örneği</title>
+    <scrip src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <style>
+  .highlighy{
+    background-color: yellow;
+  }
+  </style>
+  
+    </head>
+  <body>
+    <div id="txt" style="border: 1px #000000 solid; margin: 3px;
+ padding: 5px;
+ width: 320px; height: 140px;"> </div>
+<button id="btn">Nesne Bilgilerini Al</button>
+<script>
+$("#btn").click(function(){
+   var txt = "";
+   txt += "Genişlik: " + $("#txt").width() + "<br/>";
+   txt += "Yükseklik: " + $("#txt").height() + "<br/>";
+   txt += "İç Boşluk Genişliği: " + $("#txt").innerWidth() + "<br/>";
+   txt += "İç Boşluk Yüksekliği: " + $("#txt").innerHeight() + "<br/>";
+   txt += "Dış Boşluk Genişliği: " + $("#txt").outerWidth() + "<br/>";
+   txt += "Dış Boşluk Yüksekliği: " + $("#txt").outerHeight() + "<br/>";
+   $("#txt").html(txt);
+ }); 
+    </script>
+  </body>
+</html>

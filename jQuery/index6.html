@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Filters</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="images"></div>
+  <!-- <script>
+    $(document).ready(function(){
+      $("#myInput").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#myTable tr").filter(function() {
+          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+      });
+    });
+    </script>
+    <style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+    </head>
+    <body>
+    
+    <h2>Filterable Table</h2>
+    <p>Tabloda ad,soyad veya e-posta aramak için giriş alanına bir şeyler yazın:</p>  
+    <input id="myInput" type="text" placeholder="Arama..">
+    <br><br>
+    
+    <table>
+      <thead>
+      <tr>
+        <th>Adı</th>
+        <th>Soyadı</th>
+        <th>Email</th>
+      </tr>
+      </thead>
+      <tbody id="myTable">
+      <tr>
+        <td>Yağmur</td>
+        <td>Genç</td>
+        <td>yagmur@example.com</td>
+      </tr>
+      <tr>
+        <td>Büşra</td>
+        <td>Can</td>
+        <td>büsra@mail.com</td>
+      </tr>
+      <tr>
+        <td>Emre</td>
+        <td>Yücel</td>
+        <td>emre@greatstuff.com</td>
+      </tr>
+      <tr>
+        <td>Yakup</td>
+        <td>K.Yiğit</td>
+        <td>yakup@test.com</td>
+      </tr>
+      </tbody>
+    </table>
+      
+    <p>Tablo başlıklarını filtrelenmesini önlemek için aramayı tbody de baslattık.</p>
+    <script>
+        $(document).ready(function(){
+          $("#myInput2").on("keyup", function() {
+            var value = $(this).val().toLowerCase();
+            $("#myList li").filter(function() {
+              $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+          });
+        });
+        </script>
+        </head>
+        <body>
+        
+        <h2>Filterable List </h2>
+        <p>Listede belirli ögeleri aramak için giriş alanına bir şeyler yazın:</p>  
+        <input id="myInput2" type="text" placeholder="Arama..">
+        <br>
+        
+        <ul id="myList">
+          <li>First item</li>
+          <li>Second item</li>
+          <li>Third item</li>
+          <li>Fourth</li>
+        </ul> -->
+        <script>
+          $(document).ready(function(){
+            $("button").click(function(){
+              $.get("https://jsonplaceholder.typicode.com/photos", function(data, status){
+               console.log(data[1].thumbnailUrl);
+               $("#images").append("<img src='"+data[1].thumbnailUrl+"'>")
+               
+               
+              });
+            });
+          });
+          </script>
+          </head>
+          <body>
+          
+          <button>Send an HTTP GET request to a page and get the result back</button>
+      
+      
+      </body>
+</html>

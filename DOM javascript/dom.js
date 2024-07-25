@@ -1,45 +1,19 @@
-// const button = document.getElementById("submit");
-// const ad = document.getElementById("ad");
-// // console.log(button);
-// console.log(button.id);
-// console.log(button.className);
+//pathname
+// console.log(document.location.pathname);
+// document.body.style.backgroundColor = "aqua";
 
-// const classListesi = button.classList;
+/* dom içerisinde oge secimi ve düzenleme islemleri
+let title = document.getElementById("title");
+title.innerHTML = "Degisen Bilgi";
+console.log(title.innerHTML);
+let link = document.querySelector("#kodluyoruzLink");
+link.innerHTML += " değisti";
+link.style.color = "red";
+link.classList.add("btn");
+*/
 
-// console.log(classListesi);
-// button.onclick = function () {
-//   alert("Merhaba " + ad.value);
-// };
+let fullName = prompt("Lütfen adınızı giriniz");
 
-// const form2 = document.getElementById("form2");
-// form2.onsubmit = function (e) {
-//   e.preventDefault();
-//   alert("Merhaba " + ad.value);
-// };
+let greeting = document.querySelector("#greeting");
 
-//---LOCAL STORAGE KULLANIMI---
-//Deger ekleme
-localStorage.setItem("motion1", "Push up");
-localStorage.setItem("motion2", "Barfix");
-localStorage.setItem("motion3", "Burpee");
-localStorage.setItem("motion4", "Squat");
-
-//Degeri almak
-// let value = localStorage.getItem("motion1");
-// console.log(value);
-
-//Deger silmek
-localStorage.removeItem("motion4");
-
-//Tümünü temizle
-// localStorage.clear();
-// localStorage.clear();
-let motions = ["Push up", "Barfix", "Burpee", "Squat", "Chin Up"];
-
-localStorage.setItem("motions", JSON.stringify(motions));
-
-let value = JSON.parse(localStorage.getItem("motions"));
-
-value.forEach(function (motion) {
-  console.log(motion);
-});
+greeting.innerHTML = `${greeting.innerHTML} <small style="color:red">${fullName}<small>`;

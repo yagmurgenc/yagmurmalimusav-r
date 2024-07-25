@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+  </head>
+  <body>
+    <div id="qrcode"></div>
+    <input id="link" type="text" />
+    <button>generateqr</button>
+
+    <script>
+      $(document).ready(function () {
+        // QR kodu oluşturmak için qrcode.js'i kullanıyoruz
+        var qrcode = new QRCode("qrcode", {
+          text: "https://github.com/", // qr kodu içeriği (örnek bir URL)
+          width: 128, // qr kodu genişliği
+          height: 128, // qr kodu yüksekliği
+          colorDark: "#000000", // qr kodunun koyu renkleri
+          colorLight: "#ffffff", // qr kodunun açık renkleri
+          correctLevel: QRCode.CorrectLevel.H, // qr kodunun düzeltme seviyesi
+        });
+        $("button").click(function () {
+          let link = $("#link").val();
+          qrcode.clear();
+          qrcode.makeCode(link);
+        });
+      });
+    </script>
+  </body>
+</html>
