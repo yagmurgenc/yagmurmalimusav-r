@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hava Durumu </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .weather-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .weather-icon {
+            width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container weather-container">
+        <h1>Hava Durumu </h1>
+        <div class="form-group">
+            <label for="citySelect">Şehir Seçin:</label>
+            <select id="citySelect" class="form-control">
+                <option value="Istanbul">İstanbul</option>
+                <option value="Ankara">Ankara</option>
+                <option value="Izmir">İzmir</option>
+                <option value="Antalya">Antalya</option>
+                <option value="Bursa">Bursa</option>
+                <option value="Sivas">Sivas</option>
+                <option value="Balıkesir">Balıkesir</option>
+                <option value="Adana">Adana</option>
+                <option value="Van">Van</option>
+                <option value="Eskişehir">Eskişehir</option>
+                <option value="Sinop">Sİnop</option>
+                <option value="Bodrum">Bodrum</option>
+
+            </select>
+        </div>
+        <button id="getWeatherBtn" class="btn btn-primary">Hava Durumunu Göster</button>
+        <div id="weatherInfo" class="mt-4">
+            <img id="weatherIcon" class="weather-icon" alt="Hava Durumu Simgesi">
+            <p id="weatherCondition"></p>
+            <p id="temperature"></p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#getWeatherBtn').click(function() {
+                var apiKey = '3983780053dfe50ae15b23ee95931db3'; 
+                var city = $('#citySelect').val();
+                var apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=tr`;
+
+                $.ajax({
+                    url: apiUrl,
+                    method: 'GET',
+                    success: function(response) {
+                        if(response.cod === 200) {
+                            $('#weatherIcon').attr('src', `http://openweathermap.org/img/wn/${response.weather[0].icon}@2x.png`);
+                            $('#weatherCondition').text(response.weather[0].description);
+                            $('#temperature').text(`Sıcaklık: ${response.main.temp}°C`);
+                        } else {
+                            alert('Hava durumu bilgileri alınamadı: ' + response.message);
+                        }
+                    },
+                    
+                });
+            });
+        });
+    </script>
+</body>
+</html>
