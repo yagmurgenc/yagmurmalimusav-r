@@ -2,10 +2,10 @@ $(document).ready(function () {
     $('#search-button').on('click', function () {
         var query = $('#search-input').val();
         searchWikipedia(query);
-    });
+    });//arama butonu çalışması için
 
     $('#search-input').on('keypress', function (e) {
-        if (e.which == 13) { // Enter tuşu
+        if (e.which == 13) { // giriş tuşu için
             var query = $('#search-input').val();
             searchWikipedia(query);
         }
@@ -34,9 +34,9 @@ $(document).ready(function () {
 
     function displayResults(results) {
         $('#results').empty();
-        results.forEach(function (result) {
+        results.forEach(function (result) {// tek tek arama sonucu
             var title = result.title;
-            var snippet = result.snippet;
+            var snippet = result.snippet;// kısa açıklama için
             var pageUrl = 'https://en.wikipedia.org/wiki/' + encodeURIComponent(title);
 
             var resultItem = `
